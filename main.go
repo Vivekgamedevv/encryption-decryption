@@ -9,33 +9,6 @@ import (
 	"os"
 )
 
-type licensefile struct {
-	expiry_date string
-	user_id     string
-}
-
-func (eg *licensefile) licenseinput(date *string, id *string) {
-
-	fmt.Println("Enter the expiry date of the license file:")
-	fmt.Scanln(&eg.expiry_date)
-	fmt.Println("Enter the User ID:")
-	fmt.Scanln(&eg.user_id)
-	*date = eg.expiry_date
-	*id = eg.user_id
-
-}
-func (eg *licensefile) CAWfile(date *string, id *string) {
-	//creating and writing license file
-	filename := "License.txt"
-	file, err := os.Create(filename)
-	if err != nil {
-		fmt.Println("Error in creating rhe file")
-	}
-
-	file.WriteString(*date)
-	file.WriteString(*id)
-
-}
 func encryptfile(inputfile, outputfile string, key []byte) error {
 
 	// opening and reading the input file
@@ -159,14 +132,6 @@ func decryptfile(inputfile, outputfile string, key []byte) error {
 }
 
 func main() {
-
-	lcfile := licensefile{}
-	var temp1 string
-	var temp2 string
-	lcfile.licenseinput(&temp1, &temp2)
-	fmt.Printf("The expiry date of the license file is %s \n", temp1)
-	fmt.Printf("The User ID is %s \n", temp2)
-	lcfile.CAWfile(&temp1, &temp2)
 
 	key := []byte("Examplekey123456")
 
